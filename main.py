@@ -1,4 +1,4 @@
-from player import Game  
+from gameObject import Game  
 from pygame import display, draw, event, init,time, font
 from pygame.locals import *
 
@@ -32,6 +32,8 @@ pause = font_text.render("Appuyer sur ESPACE pour continuer...", 1, (0,0,0))
 # Le boucle principale (Mainloop)
 Run = True
 while Run:
+    
+    display.set_caption(f"Snake2                                Score max : {game.score_max} | Score : {game.score}")
     
     # La couleur de fenêtre (Blanc)
     fenetre.fill((0,255,20))
@@ -73,12 +75,15 @@ while Run:
                     game.snake.direction = "haut"
                     break
 
-            elif e.key == K_SPACE:
-                game.is_playing = True
-                game.over = False
+            if e.key == K_SPACE:
+                if game.is_playing == True:
+                    game.is_playing = False
+                else:
+                    game.is_playing = True
+                    game.over = False
             
         elif e.type == TIMER:
-            display.set_caption(f"Snake2                                Score max : {game.score_max} | Score : {game.score}")
+            
             if game.is_playing == True:
                     game.update()
             game.game_over(COL,LIN)
