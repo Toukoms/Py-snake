@@ -5,9 +5,9 @@ class AudioManager:
 
     def __init__(self):
         self.sounds = {
-            'nourriture' : mixer.Sound("assets/Serpent_NOURRITURE.wav"),
-            'perdu' : mixer.Sound("assets/Serpent_PERDU.wav"),
-            'music' : mixer.Sound("assets/music.wav")
+            'nourriture' : mixer.Sound("src/assets/Serpent_NOURRITURE.wav"),
+            'perdu' : mixer.Sound("src/assets/Serpent_PERDU.wav"),
+            'music' : mixer.Sound("src/assets/music.wav")
         }
 
     def play(self,name_audio):

@@ -1,4 +1,4 @@
-from gameObject import Game  
+from game_manager import GameManager  
 from pygame import display, draw, event, init,time, font
 from pygame.locals import *
 
@@ -9,7 +9,7 @@ init()
 COL = 15
 LIN = 20
 PIX = 32
-game = Game()
+game_manager = GameManager()
 TIMER = USEREVENT
 time.set_timer(TIMER, 200)
 
@@ -33,19 +33,19 @@ pause = font_text.render("Appuyer sur ESPACE pour continuer...", 1, (0,0,0))
 Run = True
 while Run:
     
-    display.set_caption(f"Snake2                                Score max : {game.score_max} | Score : {game.score}")
+    display.set_caption(f"Snake2                                Score max : {game_manager.score_manager.score_max} | Score : {game_manager.score_manager.score}", "src/assets/icon_snake.ico")
     
     # La couleur de fenêtre (Blanc)
     fenetre.fill((0,255,20))
 
     # dessiner les elements de jeu
-    game.draw_element(fenetre)
+    game_manager.draw_element(fenetre)
 
     # Quand le jeu est en pause ou game_over
-    if game.is_playing == False:
+    if game_manager.is_playing == False:
         fenetre.blit(pause, (2*PIX, 9*PIX))
         
-    if game.over:
+    if game_manager.over:
         fenetre.blit(text_game_over, (5*PIX,3*PIX))
 
     # Pour le maket on affiche la ligne et la colone
@@ -55,38 +55,38 @@ while Run:
     for e in event.get():
 
         if e.type == QUIT:
-            if game.score > game.score_max:
-                game.ecrire_maxscore(game.score)
+            if game_manager.score_manager.score > game_manager.score_manager.score_max:
+                game_manager.ecrire_maxscore(game_manager.score_manager.score)
             Run = False
         
         if e.type == KEYDOWN:
             
-            if game.is_playing:
-                if e.key == K_RIGHT and game.snake.direction != "gauche" :
-                    game.snake.direction = "droite"
+            if game_manager.is_playing:
+                if e.key == K_RIGHT and game_manager.snake.direction != "gauche" :
+                    game_manager.snake.direction = "droite"
                     break
-                elif e.key == K_LEFT and game.snake.direction != "droite" :
-                    game.snake.direction = "gauche"
+                elif e.key == K_LEFT and game_manager.snake.direction != "droite" :
+                    game_manager.snake.direction = "gauche"
                     break
-                elif e.key == K_DOWN and game.snake.direction != "haut" :
-                    game.snake.direction = "bas"
+                elif e.key == K_DOWN and game_manager.snake.direction != "haut" :
+                    game_manager.snake.direction = "bas"
                     break
-                elif e.key == K_UP and game.snake.direction != "bas" :
-                    game.snake.direction = "haut"
+                elif e.key == K_UP and game_manager.snake.direction != "bas" :
+                    game_manager.snake.direction = "haut"
                     break
 
             if e.key == K_SPACE:
-                if game.is_playing == True:
-                    game.is_playing = False
+                if game_manager.is_playing == True:
+                    game_manager.is_playing = False
                 else:
-                    game.is_playing = True
-                    game.over = False
+                    game_manager.is_playing = True
+                    game_manager.over = False
             
         elif e.type == TIMER:
             
-            if game.is_playing == True:
-                    game.update()
-            game.game_over(COL,LIN)
+            if game_manager.is_playing == True:
+                    game_manager.update()
+            game_manager.game_over(COL,LIN)
 
     # Actualisation de fenêtre
     display.flip()
