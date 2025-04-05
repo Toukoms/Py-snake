@@ -2,7 +2,6 @@ from components.food import Food
 from components.snake import Snake
 from core.audio import AudioManager
 from core.score import ScoreManager
-from random import randrange
 
 # Classe principale de jeu
 class GameManager:
@@ -10,23 +9,23 @@ class GameManager:
     def __init__(self):
         self.over = False
         self.score_manager = ScoreManager()
-        self.initialising()
+        self.initializing()
         self.audio = AudioManager()
         self.audio.play('music')
         
-    def initialising(self):
+    def initializing(self):
         self.score_manager.init_score()
         self.snake = Snake()
         self.generate_food()
         self.is_playing = False
     
-    def reinitialising(self):
+    def reinitializing(self):
         self.audio.play('perdu')    
         self.over = True
         if self.score_manager.score_max < self.score_manager.score:
             self.score_manager.score_max = self.score_manager.score
             self.score_manager.ecrire_maxscore(self.score_manager.score_max)
-        self.initialising()
+        self.initializing()
         
     def draw_element(self, fenetre):
         self.food.draw_food(fenetre)
@@ -38,16 +37,17 @@ class GameManager:
         self.check_collision()
 
     def generate_food(self):
-        # est-ce que le food occupe la même case que le corps de snake
         self.food = Food()
-        bad_pos = True
-        while bad_pos:
+        bad_pos = len(self.snake.body)
+        while bad_pos >= 0:
             for place in self.snake.body:
-                # est-ce qu'il occupe la même case
+                # est-ce que le food occupe la même case que le corps de snake
                 if place.x_pos == self.food.block.x_pos and place.y_pos == self.food.block.y_pos:
                     self.food = Food()
-                    continue
-                bad_pos = False
+                    break
+                bad_pos -= 1
+            if bad_pos >= 1:
+                bad_pos = len(self.snake.body)
                                 
     def check_collision(self):
         # verifier si la tête du serpent occupent la même case que la nourriture
@@ -61,8 +61,8 @@ class GameManager:
     def game_over(self, col, lin):
         # on verifie si le snake sort de la fenêtre
         if not 0 <= self.snake.head.x_pos < col or not 0 <= self.snake.head.y_pos < lin:
-            self.reinitialising()
+            self.reinitializing()
         for block in self.snake.body:
             if self.snake.head.x_pos == block.x_pos and self.snake.head.y_pos == block.y_pos:
-                self.reinitialising()
+                self.reinitializing()
         

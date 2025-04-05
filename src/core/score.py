@@ -11,16 +11,15 @@ class ScoreManager:
             self.ecrire_maxscore(0)
             self.score_max = self.lire_maxscore()
             
-    def init_score(s):
-        score = 0
-        return score
+    def init_score(self):
+        self.score = 0
             
     def ecrire_maxscore(self,data):
-        with open("score.bin", "wb") as fichier:
+        with open("score.max", "wb") as fichier:
             mon_pickler = pickle.Pickler(fichier)
             mon_pickler.dump(data)
             
     def lire_maxscore(self):
-        with open("score.bin","rb") as fichier:
+        with open("score.max","rb") as fichier:
             contenu = pickle.Unpickler(fichier)
             return contenu.load()
