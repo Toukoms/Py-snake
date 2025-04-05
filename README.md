@@ -14,7 +14,7 @@ git clone https://github.com/Toukoms/Py-snake.git
 - go to the folder
 
 ```bash
-cd Py-snake/src
+cd Py-snake
 ```
 
 - Install virtualenv if not already installed
