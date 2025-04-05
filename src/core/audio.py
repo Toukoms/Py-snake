@@ -1,4 +1,3 @@
-from asyncore import loop
 from pygame import mixer
 
 class AudioManager:

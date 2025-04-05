@@ -1,7 +1,7 @@
 from pygame import sprite, image
 from random import randrange
 
-from constant import Block
+from core.block import Block
 
 # Classe du nourriture
 class Food(sprite.Sprite):

@@ -1,6 +1,6 @@
 from pygame import sprite, image
 
-from constant import Block
+from core.block import Block
 
 # Classe du serpent
 class Snake(sprite.Sprite):

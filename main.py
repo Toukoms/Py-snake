@@ -1,6 +1,12 @@
-from game_manager import GameManager  
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+
+from game_manager import GameManager
 from pygame import display, draw, event, init,time, font
 from pygame.locals import *
+
 
 # Initialisation de pygame
 init()
@@ -21,7 +27,7 @@ def afficher_ligne():
 n = 2
 # Création de fenêtre
 fenetre = display.set_mode((COL*PIX,LIN*PIX))
-display.set_caption(f"Snake2 {n}")
+display.set_caption(f"Snake Game {n}")
 # font de texte à affiche
 font_text = font.SysFont("monospace", 18)
 font_game_over = font.SysFont("Ravie", 30)
@@ -33,7 +39,7 @@ pause = font_text.render("Appuyer sur ESPACE pour continuer...", 1, (0,0,0))
 Run = True
 while Run:
     
-    display.set_caption(f"Snake2                                Score max : {game_manager.score_manager.score_max} | Score : {game_manager.score_manager.score}", "src/assets/icon_snake.ico")
+    display.set_caption(f"Snake Game                                Score max : {game_manager.score_manager.score_max} | Score : {game_manager.score_manager.score}", "src/assets/icon_snake.ico")
     
     # La couleur de fenêtre (Blanc)
     fenetre.fill((0,255,20))

@@ -5,12 +5,6 @@
 
 # How to install it
 
-- First you need to install PyGame, a Python framework for creating 2d game
-
-```bash
-pip install pygame
-```
-
 - Clone the repository
 
 ```bash
@@ -21,6 +15,12 @@ git clone https://github.com/Toukoms/Py-snake.git
 
 ```bash
 cd Py-snake/src
+```
+
+- Then you need to install PyGame, a Python framework for creating 2d game
+
+```bash
+pip install pygame
 ```
 
 - run the `main.py` file

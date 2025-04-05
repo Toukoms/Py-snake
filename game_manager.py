@@ -1,7 +1,7 @@
-from components.audio import AudioManager
 from components.food import Food
-from components.score import ScoreManager
 from components.snake import Snake
+from core.audio import AudioManager
+from core.score import ScoreManager
 from random import randrange
 
 # Classe principale de jeu
