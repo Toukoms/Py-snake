@@ -50,7 +50,7 @@ pip install -r REQUIREMENTS.txt
 - run the `main.py` file
 
 ```bash
-py main
+python main
 ```
 
 Enjoy it 😀
